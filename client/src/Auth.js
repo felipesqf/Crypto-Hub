@@ -1,5 +1,5 @@
 import React from 'react';
-import Landing from './components/pages/Landing/Landing';
+import Portfolio from './components/pages/Portfolio/Portfolio';
 import { useAppContext } from './store';
 
 function Auth(ComposedComponent) {
@@ -8,7 +8,7 @@ function Auth(ComposedComponent) {
     return function Authentication(props) {
         return state.isAuthenticated
             ? <ComposedComponent {...props} />
-            : <Landing />;
+            : <Portfolio />;
     };
 }
 
