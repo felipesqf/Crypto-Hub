@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito",sans-serif;
+}
+.site-layout-content {
+    min-height: 280px;
+    padding: 24px;
+    background: #fff;
+  }
+  #components-layout-demo-top .logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .ant-row-rtl #components-layout-demo-top .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
+  }
+
+img{
+    /* background-image: url(../../assets/images/landingpagebackgroundimg.jpg); */
+    /* background-size:     cover;            
+    background: #001f3f;      
+    background-repeat:   no-repeat; */
+    background-position: center center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.site-card-wrapper {
+    padding: 30px;
+    background: #ececec;
+  }
+
+#row{
+    padding-bottom: 25px;
+}
+.container {
+    /* position: relative;
+    text-align: center;
+    color: white; */
+  }
+.landingJumbo {
+    width: 60%;
+    background-color: rgba(204, 204, 204, 0.6) !important;
+}
+
+.cardBackground{
+    background-color: rgb(231, 248, 255)!important;
+}
+
+
+.jumboText {
+    color: black;
+}

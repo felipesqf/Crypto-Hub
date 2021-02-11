@@ -1,0 +1,13 @@
+#coinData{
+    float: left;
+}
+#chart{
+    float:right;
+    height: 400px;
+    width: 700px;
+    color:#000;
+}
+h1{
+    font-weight: bold;
+    font-size: 60px;
+}

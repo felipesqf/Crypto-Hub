@@ -1,0 +1,16 @@
+.hero{
+align-items: center;
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+display: flex;
+position: relative;
+text-align: center;
+width: 100vw;
+height: 70vh;
+/* Determine parallax behavior based on our 'parallax' prop */
+background-attachment: 'scroll';
+/* Dynamically set this property based on our 'textPosition' prop */
+justify-content:'center';
+}
+
