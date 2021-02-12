@@ -9,6 +9,10 @@ const portfolio = new Schema({
     type: Number,
     default: 0,
   },
+  currentPrice: {
+    type: Number,
+    default: 0,
+  },
 });
 const favorite = new Schema({
   coin: {
@@ -32,6 +36,11 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  total: {
+    type: Number,
+    required: true,
+    default: 0,
   },
   portfolio: [portfolio],
   favorite: [favorite],

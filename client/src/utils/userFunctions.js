@@ -39,6 +39,8 @@ export const addPort = (userData) => {
     return axios.put('/api/addPort',{
         coin: userData.coin,
         amount: userData.amount,
+        total: userData.total,
+        currentPrice: userData.currentPrice,
         email: userData.email,
     }
    ).then((res) => console.log(res.data));

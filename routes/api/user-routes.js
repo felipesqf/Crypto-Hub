@@ -40,8 +40,9 @@ router.put("/api/addPort", (req, res) => {
     const userData = {
       coin: req.body.coin,
       amount: req.body.amount,
+      currentPrice: req.body.currentPrice,
     };
-    User.updateOne({ $push: { portfolio: userData } })
+    User.updateOne({ $push: { portfolio: userData }, total: req.body.total })
       .then((user) => {
         return res.json(user);
       })
@@ -70,6 +71,7 @@ router.post("/api/register", (req, res) => {
       last_name: req.body.last_name,
       email: req.body.email,
       password: req.body.password,
+      total: 0,
       created: today,
     };
     bcrypt.hash(req.body.password, 10, (err, hash) => {

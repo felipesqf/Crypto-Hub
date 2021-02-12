@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 import { Table, Button, Modal, Input } from 'antd';
-import { addFav, addPort, getUser } from '../../utils/userFunctions';
+import { addFav, addPort } from '../../utils/userFunctions';
 import { useAppContext } from '../../store';
 import { useLoginCheck } from '../../utils/setAuthToken';
 
@@ -15,12 +15,14 @@ function CoinList(props) {
     setCoin(e)
     setIsModalVisible(true);
   };
-
+  console.log(state)
   const handleOk = () => {
     let coinAmount = document.getElementById("amount").value;
     let userData = {
       email: state.user.email,
-      coin: coin,
+      coin: coin.name,
+      total: state.user.total + coin.current_price,
+      currentPrice: coin.current_price,
       amount: coinAmount,
       
     }
@@ -108,7 +110,7 @@ function CoinList(props) {
         symbol : result.symbol.toUpperCase(),
         coin :result.name,
         price : formatter.format(result.current_price),
-        portfolio : result.name,
+        portfolio : result,
         favorites : result.name,
         }));
   return (
