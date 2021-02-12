@@ -7,3 +7,16 @@
     position: absolute; 
     bottom: 5px; 
 }
+
+.piechart{
+    height: 450px;
+    width: 450px;
+}
+
+
+@media screen and (max-width: 900){
+    .piechart{
+        height: 250px;
+        width: 250px;
+    }
+}

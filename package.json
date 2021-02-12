@@ -39,6 +39,7 @@
         "passport": "^0.4.1",
         "passport-jwt": "^4.0.0",
         "path": "^0.12.7",
+        "react-minimal-pie-chart": "^8.1.0",
         "react-router-dom": "^5.2.0",
         "serve": "^11.3.2",
         "validator": "^13.5.2",

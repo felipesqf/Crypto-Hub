@@ -2,14 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
-// import Landing from './components/pages/Landing/Landing';
 import Main from './components/pages/Main/Main';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Portfolio from './components/pages/Portfolio/Portfolio';
-import Other from './components/pages/Other/Other';
 import Profile from './components/Profile/Profile';
-// import StartUp from './components/pages/StartUp/StartUp';
 import News from './components/pages/News/News';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppContextProvider } from './store';
@@ -29,7 +26,6 @@ function App() {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/portfolio" component={Auth(Portfolio)} />
-                        <Route exact path="/other" component={Other} />
                         <Route exact path="/news" component={News} />
                     </div>
                 </div>

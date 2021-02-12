@@ -3,32 +3,15 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import "./style.css";
 import API from "../../../utils/API";
-import LandingJumbo from '../../LandingJumbo/LandingJumbo';
 import { Layout } from 'antd';
 import { Card, Col, Row } from 'antd';
-const { Content, Footer } = Layout;
+const { Footer } = Layout;
 
-const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
-const cardStyle = {
-    background: '#364d79',
-  };
-const text = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%);"
-}
 
 class News extends Component {
     state = {
         news:[],
-        docs:[,]
+        docs:[]
     };
     
     componentWillMount() {
@@ -36,20 +19,22 @@ class News extends Component {
         .then(res => {
             this.setState({ news: res.data })
             this.setState({ docs: this.state.news.response.docs })
+            
         }
         )
       }
-     
+      
 render(){
-
+  localStorage.setItem("News", JSON.stringify(this.state.docs))
+ let storedNews = JSON.parse(localStorage.getItem("News"));
     return(
-        
+      
     <Layout className="layout">
     <div className="d-flex justify-content-center backgroundImg">
         {/* <LandingJumbo/> */}
     </div>
             <div className="site-card-wrapper">
-            {this.state.docs.map(result => (
+            {storedNews.map(result => (
             <Row id="row" gutter={16}>
             <Col span={24}>
                 <Card bordered={false}>

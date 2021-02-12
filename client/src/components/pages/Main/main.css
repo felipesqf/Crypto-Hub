@@ -37,7 +37,10 @@
 .cardBackground{
     background-color: rgb(231, 248, 255)!important;
 }
-
+.footer{
+    background-color: #001f3f;
+    color:#fff;
+}
 
 .jumboText {
     color: black;

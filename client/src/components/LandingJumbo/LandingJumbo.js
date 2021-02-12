@@ -1,49 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import Candle from '@ant-design/charts';
-import API from "../../utils/API";
 var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
   });
 
+//1. Import coingecko-api
+const CoinGecko = require('coingecko-api');
+
+//2. Initiate the CoinGecko API Client
+const CoinGeckoClient = new CoinGecko();
 
 function LandingJumbo(props) {
 
-    let { chart }  = props
-    console.log(chart)
-       const data = [
-          { date: '1991', value: 1 },
-          { date: '1992', value: 2 },
-          { date: '1993', value: 3 },
-          { date: '1994', value: 1 },
-          { date: '1995', value: 5 },
-          { date: '1996', value: 1 },
-          { date: '1996', value: 15 },
-          { date: '1996', value: 10 },
-          { date: '1996', value: 100 },
-          {color:'black'}
-        ]
-        
-        const config = {
-          data,
+  console.log(props.chart)
+//   let dataChart = CoinGeckoClient.coins.fetchMarketChart('bitcoin', {
+//       days: 7,
+//       interval: "daily"
+//     }) 
+//  console.log(dataChart)
+      const data = [
+        { date: '1991', value: 1 },
+        { date: '1992', value: 1 },
+        { date: '1993', value: 1 },
+        { date: '1994', value: 1 },
+        { date: '1995', value: 1 },
+        { date: '1996', value: 1 },
+        { date: '1997', value: 1 },
+        { date: '1998', value: 1 },
+        {color:'black'}
+      ]
+      const config = {
+        data,
+        color:'black',
+        height: 400,
+        xField: 'date',
+        yField: 'value',
+        point: {
+          size: 5,
+          shape: 'diamond',
           color:'black',
-          height: 400,
-          xField: 'date',
-          yField: 'value',
-          point: {
-            size: 5,
-            shape: 'diamond',
-            color:'black',
+        },
+        label: {
+          color:'black',
+          style: {
+            fill: '#aaa',
+            
           },
-          label: {
-            color:'black',
-            style: {
-              fill: '#aaa',
-              
-            },
-          },
-        };
+        },
+      };
     return (
         <div className="mt-5 jumbotron landingJumbo">
             <div  className="mx-left col-sm-4 jumboText">

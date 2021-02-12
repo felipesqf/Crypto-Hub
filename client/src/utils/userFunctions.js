@@ -21,3 +21,26 @@ export const loginUser = (userData) => {
 export const getUsers = () => {
     return axios.get('/api/displayusers').then((res) => res.data);
 };
+
+export const getUser = (p) => {
+    return axios.get('/api/profile', p).then((res) => res.data)
+};
+
+export const addFav = (userData) => {
+    console.log(userData)
+    return axios.put('/api/addFav',{
+        coin: userData.coin[0].name,
+        email: userData.email,
+    }
+   ).then((res) => res.data);
+};
+export const addPort = (userData) => {
+    console.log(userData)
+    return axios.put('/api/addPort',{
+        coin: userData.coin,
+        amount: userData.amount,
+        email: userData.email,
+    }
+   ).then((res) => console.log(res.data));
+};
+

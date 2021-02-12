@@ -39,7 +39,7 @@ function Login() {
             const decodedToken = jwt_decode(token);
             // Set current user
             appDispatch({ type: SET_CURRENT_USER, payload: decodedToken });
-            history.push('/dashboard');
+            history.push('/portfolio');
         } catch (error) {
             appDispatch({
                 type: GET_ERRORS,

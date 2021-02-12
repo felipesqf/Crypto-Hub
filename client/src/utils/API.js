@@ -3,7 +3,7 @@ import axios from "axios";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getCoins: async function() {
-    const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false', {
+    const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5000&page=1&sparkline=false', {
       params: {
         dataType: 'json'
       }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 
 
 function SearchResults(props) {
@@ -13,7 +13,7 @@ function SearchResults(props) {
 
   function handleClick(e){
     let newArray = props.results
-    let newDataCard  = newArray.filter(item => e == item.name)
+    let newDataCard  = newArray.filter(item => e === item.name)
     // props.dataCard = newDataCard[0];
       props.handleChange(newDataCard[0])   //make sure to pass the value in the
   }
@@ -76,12 +76,12 @@ function SearchResults(props) {
       title: 'Details',
       dataIndex: 'details',
       key: 'details',
-      render: detail => <button onClick={() => handleClick(detail)} type="button">View Details</button>,
+      render: detail => <Button onClick={() => handleClick(detail)} type="button">View Details</Button>,
     },
   ];
-  function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra);
-  }
+  // function onChange(pagination, filters, sorter, extra) {
+  //   console.log('params', pagination, filters, sorter, extra);
+  // }
 
   const data = props.results.map(result => ({
         no : result.market_cap_rank,
