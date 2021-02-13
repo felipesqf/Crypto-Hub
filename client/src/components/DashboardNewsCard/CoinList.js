@@ -11,20 +11,16 @@ function CoinList(props) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [coin, setCoin] = useState();
   const [state, appDispatch] = useAppContext();
-  
 
-  
   useLoginCheck(appDispatch);
 
-  // let newUser = state.user
-  // setUser(newUser)
-
+  //modal to add coin to portfolio
   const showModal = (e) => {
     setCoin(e)
     setIsModalVisible(true);
   };
-  // console.log(state.user.total)
-  // console.log(coin.current_price)
+ 
+  //add coin to the portfolio
   const handleOk = async() => {
     let coinAmount = document.getElementById("amount").value;
     let userData = {
@@ -38,12 +34,9 @@ function CoinList(props) {
     state.user.total = total
     addPort(userData)
     setIsModalVisible(false);
-    // console.log(state.user)
-
-            // Set token to Auth header
-
   };
 
+  //handle cancel on modal
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -52,8 +45,8 @@ function CoinList(props) {
     currency: 'USD',
   });  
 
+  //add favorite to portfolio
   const setFav = async (e) =>{
-    // console.log(state.user)
     let coins = props.results
     let newFav  = coins.filter(item => e === item.name)
     let userData = {
@@ -62,10 +55,11 @@ function CoinList(props) {
     }
       await state.user.favorite.push(e)
       addFav(userData);
-      // console.log(state.user)
       props.handleChange()
-      // getUser(state.user.email)
   }
+
+
+  //build table
   const columns = [
     {
       title: 'Rank',
@@ -73,8 +67,6 @@ function CoinList(props) {
       key: 'no',
       defaultSortOrder: 'ascend',
       sorter: (a, b) => a.no - b.no,
-      // render: text => <a onClick={console.log(document.querySelector("data-row-key"))}>{text}</a>,
-      // onClick: handleClick
     },
     {
       title: 'Logo',

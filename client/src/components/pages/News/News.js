@@ -13,22 +13,24 @@ class News extends Component {
         news:[],
         docs:[]
     };
-    
+
     componentWillMount() {
+      //get news on the NYT api
         API.getNews()
         .then(res => {
             this.setState({ news: res.data })
             this.setState({ docs: this.state.news.response.docs })
-            
+            //store the news
+            localStorage.setItem("News", JSON.stringify(this.state.docs))
         }
         )
       }
       
 render(){
-  localStorage.setItem("News", JSON.stringify(this.state.docs))
+  //get news stored
  let storedNews = JSON.parse(localStorage.getItem("News"));
     return(
-      
+    //render 
     <Layout className="layout">
     <div className="d-flex justify-content-center backgroundImg">
         {/* <LandingJumbo/> */}

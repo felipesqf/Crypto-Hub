@@ -8,26 +8,24 @@ import { Badge } from 'antd';
 import StarFilled from '@ant-design/icons';
 
 function DashboardNewsCard(props) {
-    // let storedCoins = JSON.parse(localStorage.getItem("coinList"));
-    // const [user, setUser] = useState();
+
     const [state, appDispatch] = useAppContext();
     useLoginCheck(appDispatch);
 
-    // console.log(props.state.user)
+
     let formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
       });  
-    // console.log(state.user.portfolio)
+
+    //generate ramdon hex colors for the chart
     let getRandomColor = () =>{
          let randomColor = Math.floor(Math.random()*16777215).toString(16)
          randomColor = '#'+randomColor
          return randomColor
     }      
-    // let amountUSD
-    // let calculatePort = portfolio.foreach(res =>( res.name === storedCoins.current_price
-    // ))
 
+    //building pie chart data
     const percentage = props.state.user.portfolio.map(item => ({
             amount: item.amount,
             title: item.coin,
@@ -39,6 +37,7 @@ function DashboardNewsCard(props) {
             element.value = parseFloat(element.value)
             
         });
+    //render
     return (
         <div height="400px"className="mx-auto col-sm-8 cardBackground">
             <div className="card-body">

@@ -25,6 +25,7 @@ class Main extends Component {
 
 
   handleChange(value){
+      //handeling the data to show in the card
       this.setState({ dataCard: value });
       localStorage.setItem("cardData", JSON.stringify(value))
 
@@ -37,6 +38,7 @@ class Main extends Component {
         let { data } = res
         this.setState({ chart: data, loading: false })})
   }
+
   handleInputChange = event => {
     const value = event.target.value;
     let storedCoins = JSON.parse(localStorage.getItem("coinList"));
@@ -52,8 +54,10 @@ class Main extends Component {
       this.setState({
         loading: true
       });
-        // this.getCoins();
+
+       //get the card data stored
         let storedCard = JSON.parse(localStorage.getItem("cardData"));     
+        //get list of coins
         API.getCoins()
         .then(res => {
         localStorage.setItem("coinList", JSON.stringify(res.data))
@@ -62,7 +66,7 @@ class Main extends Component {
         })
         .catch(err => console.log(err));
         
-  
+        //get the chart data
         CoinGeckoClient.coins.fetchMarketChart(storedCard.id, {
           days: 7,
           interval: "daily"
@@ -74,7 +78,7 @@ class Main extends Component {
   
     render() {
       return(
-        
+        //rendering
             <Layout className="layout">
                 <div className="d-flex justify-content-center backgroundImg">
                   <LandingJumbo results={this.state.dataCard} chart={this.state.chart}/>

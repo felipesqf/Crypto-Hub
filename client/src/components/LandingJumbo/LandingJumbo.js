@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
 import Candle from '@ant-design/charts';
 var formatter = new Intl.NumberFormat('en-US', {
@@ -6,22 +6,17 @@ var formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
   });
 
-
 function LandingJumbo(props) {
 
+  //getting the chart from local storage
 let storedDataChart = JSON.parse(localStorage.getItem("chartData"));
 
-
-let dateObj = new Date(storedDataChart.data.prices[0][0] * 1000);
-console.log(dateObj)
-console.log(storedDataChart.data.prices.length)
-// console.log(dayOne)
+//formating the data for the chart
 for (let i=0; i< storedDataChart.data.prices.length; i++){
   let date = new Date(storedDataChart.data.prices[i][0])
   let day = date.getDate()
   let month = date.getMonth()
   storedDataChart.data.prices[i][0] = day+"/"+month
-  console.log(storedDataChart.data.prices[i][0])
 }
 
 //data for the chart
@@ -39,11 +34,9 @@ for (let i=0; i< storedDataChart.data.prices.length; i++){
       const config = {
         data,
         color:'black',
-        // height: 100,
         xField: 'date',
         yField: 'value',
         point: {
-          // size: 5,
           shape: 'diamond',
           color:'black',
           style: {
