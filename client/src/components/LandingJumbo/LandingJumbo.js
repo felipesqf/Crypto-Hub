@@ -6,83 +6,55 @@ var formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
   });
 
-//1. Import coingecko-api
-const CoinGecko = require('coingecko-api');
-
-//2. Initiate the CoinGecko API Client
-const CoinGeckoClient = new CoinGecko();
-
 
 function LandingJumbo(props) {
-const [coin, setCoin] = useState()
+
 let storedDataChart = JSON.parse(localStorage.getItem("chartData"));
-  // CoinGeckoClient.coins.fetchMarketChart('bitcoin', {
-  //   days: 7,
-  //   interval: "daily"
-  // }).then(res => {
-  //   let { data } = res
-  //   setCoin(data)
-  // })
-
-  //   console.log(coin)
 
 
-  // const data = [
-  //   { date: '1991', value: 1 },
-  //   { date: '1992', value: 1 },
-  //   { date: '1993', value: 1 },
-  //   { date: '1994', value: 1 },
-  //   { date: '1995', value: 1 },
-  //   { date: '1996', value: 1 },
-  //   { date: '1997', value: 1 },
-  //   { date: '1998', value: 1 },
-  //   {color:'black'}
-  // ]
-  // console.log(priceArray)
-  
-  // console.log(priceArray)
-
-  // for (let i= 0; i < priceArray.length; i++ ){
-  //       priceArray.forEach(item => formatter.format(item[i][1]))}
-        // console.log(priceArray)
-
-  
-//   let priceArray;
-// console.log(storedDataChart)
-//   if(props.chart.prices === 'undefined'){
-//     priceArray = storedDataChart.data.prices
-//   }
-//   else{
-//     priceArray = props.chart.prices
-//   }
-//  const dayOne = props.chart.prices
+let dateObj = new Date(storedDataChart.data.prices[0][0] * 1000);
+console.log(dateObj)
+console.log(storedDataChart.data.prices.length)
 // console.log(dayOne)
+for (let i=0; i< storedDataChart.data.prices.length; i++){
+  let date = new Date(storedDataChart.data.prices[i][0])
+  let day = date.getDate()
+  let month = date.getMonth()
+  storedDataChart.data.prices[i][0] = day+"/"+month
+  console.log(storedDataChart.data.prices[i][0])
+}
+
+//data for the chart
       const data = [
-        { date: '1991', value: storedDataChart.data.prices[0][1] },
-        { date: '1992', value: storedDataChart.data.prices[1][1] },
-        { date: '1993', value: storedDataChart.data.prices[2][1] },
-        { date: '1994', value: storedDataChart.data.prices[3][1] },
-        { date: '1995', value: storedDataChart.data.prices[4][1] },
-        { date: '1996', value: storedDataChart.data.prices[5][1] },
-        { date: '1997', value: storedDataChart.data.prices[6][1] },
-        { date: '1998', value: storedDataChart.data.prices[7][1] },
+        { date: storedDataChart.data.prices[0][0], value: storedDataChart.data.prices[0][1] },
+        { date: storedDataChart.data.prices[1][0], value: storedDataChart.data.prices[1][1] },
+        { date: storedDataChart.data.prices[2][0], value: storedDataChart.data.prices[2][1] },
+        { date: storedDataChart.data.prices[3][0], value: storedDataChart.data.prices[3][1] },
+        { date: storedDataChart.data.prices[4][0], value: storedDataChart.data.prices[4][1] },
+        { date: storedDataChart.data.prices[5][0], value: storedDataChart.data.prices[5][1] },
+        { date: storedDataChart.data.prices[6][0], value: storedDataChart.data.prices[6][1] },
+        { date: storedDataChart.data.prices[7][0], value: storedDataChart.data.prices[7][1] },
         {color:'black'}
       ]
       const config = {
         data,
         color:'black',
-        height: 400,
+        // height: 100,
         xField: 'date',
         yField: 'value',
         point: {
-          size: 5,
+          // size: 5,
           shape: 'diamond',
           color:'black',
+          style: {
+            fill: '#fff',
+            
+          },
         },
         label: {
           color:'black',
           style: {
-            fill: '#aaa',
+            fill: '#fff',
             
           },
         },
