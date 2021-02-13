@@ -111,6 +111,7 @@ router.post("/api/login", (req, res) => {
             email: response.email,
             portfolio: response.portfolio,
             favorite: response.favorite,
+            total: response.total,
           };
           let token = jwt.sign(payload, process.env.SECRET_KEY, {
             // 1 year in seconds

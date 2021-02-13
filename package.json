@@ -23,6 +23,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@ant-design/icons": "^4.5.0",
         "@metamask/detect-provider": "^1.2.0",
         "axios": "^0.21.1",
         "bcryptjs": "^2.4.3",
@@ -36,6 +37,7 @@
         "lodash": "^4.17.20",
         "mongodb": "^3.6.4",
         "mongoose": "^5.11.15",
+        "mongoose-currency": "^0.2.0",
         "morgan": "^1.10.0",
         "passport": "^0.4.1",
         "passport-jwt": "^4.0.0",

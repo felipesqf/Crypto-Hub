@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+require("mongoose-currency").loadType(mongoose);
+var Currency = mongoose.Types.Currency;
 
 const portfolio = new Schema({
   coin: {
@@ -10,7 +12,7 @@ const portfolio = new Schema({
     default: 0,
   },
   currentPrice: {
-    type: Number,
+    type: Currency,
     default: 0,
   },
 });

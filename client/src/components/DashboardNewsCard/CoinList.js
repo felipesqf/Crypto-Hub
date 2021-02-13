@@ -7,25 +7,33 @@ import { useLoginCheck } from '../../utils/setAuthToken';
 
 function CoinList(props) {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [user, setUser] = useState();
   const [coin, setCoin] = useState();
   const [state, appDispatch] = useAppContext();
+  
   useLoginCheck(appDispatch);
+
+  // let newUser = state.user
+  // setUser(newUser)
 
   const showModal = (e) => {
     setCoin(e)
     setIsModalVisible(true);
   };
-  console.log(state)
+  console.log(state.user.total)
+  // console.log(coin.current_price)
   const handleOk = () => {
     let coinAmount = document.getElementById("amount").value;
     let userData = {
       email: state.user.email,
       coin: coin.name,
-      total: state.user.total + coin.current_price,
+      total: (state.user.total + (coinAmount * coin.current_price)),
       currentPrice: coin.current_price,
       amount: coinAmount,
-      
     }
+    let total = state.user.total + (coinAmount * coin.current_price)
+    state.user.total = total
+    console.log(userData)
     addPort(userData)
     setIsModalVisible(false);
   };
@@ -39,7 +47,7 @@ function CoinList(props) {
   });  
 
   const setFav = async (e) =>{
-    console.log(state.user)
+    // console.log(state.user)
     let coins = props.results
     let newFav  = coins.filter(item => e === item.name)
     let userData = {

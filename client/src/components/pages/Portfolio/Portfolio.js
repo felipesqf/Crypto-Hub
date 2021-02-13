@@ -36,7 +36,6 @@ function Portfolio() {
     const [state, appDispatch] = useAppContext();
     useLoginCheck(appDispatch);
 
-      
     return (
         <div className="pl-0 container-fluid">
             {/* <Sidebar /> */}
