@@ -36,6 +36,10 @@ function Portfolio() {
     const [state, appDispatch] = useAppContext();
     useLoginCheck(appDispatch);
 
+    function handleChange(event) {
+        this.setState({ state: event });
+      };
+      
     return (
         <div className="pl-0 container-fluid">
             {/* <Sidebar /> */}
@@ -46,9 +50,9 @@ function Portfolio() {
                 </h1>
                 
                 <div className="flex-row-reverse mr-5 d-flex">
-                    <DashboardNewsCard />
+                    <DashboardNewsCard state={state}/>
                 </div>
-                <CoinList results={storedCoins}/>
+                <CoinList onChange={useLoginCheck(appDispatch)} handleChange={handleChange.bind(this)} results={storedCoins}/>
             </div>
         </div>
     );

@@ -4,10 +4,10 @@ import { Table, Button, Modal, Input } from 'antd';
 import { addFav, addPort } from '../../utils/userFunctions';
 import { useAppContext } from '../../store';
 import { useLoginCheck } from '../../utils/setAuthToken';
+import DashboardNewsCard from './DashboardNewsCard'
 
 function CoinList(props) {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [user, setUser] = useState();
   const [coin, setCoin] = useState();
   const [state, appDispatch] = useAppContext();
   
@@ -20,9 +20,9 @@ function CoinList(props) {
     setCoin(e)
     setIsModalVisible(true);
   };
-  console.log(state.user.total)
+  // console.log(state.user.total)
   // console.log(coin.current_price)
-  const handleOk = () => {
+  const handleOk = async() => {
     let coinAmount = document.getElementById("amount").value;
     let userData = {
       email: state.user.email,
@@ -33,9 +33,10 @@ function CoinList(props) {
     }
     let total = state.user.total + (coinAmount * coin.current_price)
     state.user.total = total
-    console.log(userData)
+    await props.handleChange(state.user)
     addPort(userData)
     setIsModalVisible(false);
+    console.log(state.user)
   };
 
   const handleCancel = () => {
@@ -54,10 +55,11 @@ function CoinList(props) {
       email: state.user.email,
       coin: newFav
     }
+      await state.user.favorite.push(e)
       addFav(userData);
+      console.log(state.user)
       // getUser(state.user.email)
   }
-
   const columns = [
     {
       title: 'Rank',
@@ -108,10 +110,6 @@ function CoinList(props) {
       render: favorites => <Button onClick={()=> setFav(favorites)} type="primary">Add to my favorites</Button>
     },
   ];
-  // function onChange(pagination, filters, sorter, extra) {
-  //   console.log('params', pagination, filters, sorter, extra);
-  // }
-
   const data = props.results.map(result => ({
         no : result.market_cap_rank,
         image :result.image,

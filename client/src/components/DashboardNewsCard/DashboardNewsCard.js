@@ -13,6 +13,7 @@ function DashboardNewsCard(props) {
     const [state, appDispatch] = useAppContext();
     useLoginCheck(appDispatch);
 
+    console.log(props.state.user)
     let formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -24,49 +25,57 @@ function DashboardNewsCard(props) {
          console.log(randomColor)
          return randomColor
     }
-    // let newUser = state.user
-    // setUser(newUser)
-   
+    function handleChange(event) {
+        this.setState({ results: event });
+      };
+
+      
     // let amountUSD
-    console.log(state.user)
+    console.log(props.state.user)
     // let calculatePort = portfolio.foreach(res =>( res.name === storedCoins.current_price
     // ))
 
-    const percentage = state.user.portfolio.map(item => ({
+    const percentage = props.state.user.portfolio.map(item => ({
             title: item.coin,
-            value: (((item.currentPrice * item.amount) /state.user.total) * 100 ).toFixed(2),
-            color: getRandomColor(),
+            value: (((item.currentPrice * item.amount) /props.state.user.total) * 100 ).toFixed(2),
+            color: getRandomColor().toUpperCase(),
         }
         ));
-
+        percentage.forEach(element => { 
+            element.value = parseFloat(element.value)
+            
+        });
         console.log(percentage)
     return (
         <div height="400px"className="mx-auto col-sm-8 cardBackground">
             <div className="card-body">
             <div className="mx-left col-sm-4">
-                    <PieChart  
+            <PieChart
                     data={percentage}
-                    />
+                    />;
                     <div>
                         <h1> Total: {formatter.format(state.user.total)}</h1>
                     </div>
             </div>
             <div className="mx-left col-sm-4">
             <h2>Coins</h2>
+            <ul>
                 {percentage.map(item => 
-                <div>
-                    <Badge color={item.color}/>
-                    <p>{ item.title }:%{ item.value }~</p>
-                </div>
+                <li>
+                    <p><Badge color={item.color}/> { item.title }: % { item.value }~</p>
+                </li>
                 )}
+                </ul>
             </div>   
             <div className="mx-left col-sm-4">
             <h2>Favorites</h2>
-                {state.user.favorite.map(item => 
-                <div>
-                    <StarFilled /><p>{item.coin}</p>
-                </div>
+            <ul>
+                {props.state.user.favorite.map(item => 
+                <li>
+                    <p><StarFilled />{item.coin}</p>
+                </li>
                 )}
+            </ul>
             </div>   
             </div>  
         </div>
