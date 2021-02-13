@@ -24,8 +24,9 @@ export const getUsers = () => {
 
 export const getUser = (p) => {
     console.log(p)
-    return axios.get('/api/profile', { p })
-    .then((res) => console.log(res))
+    return axios.get('/api/profile',{
+    email: p})
+    .then((res) => res.data)
 };
 
 export const addFav = (userData) => {

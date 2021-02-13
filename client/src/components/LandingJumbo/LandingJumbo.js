@@ -7,11 +7,16 @@ var formatter = new Intl.NumberFormat('en-US', {
   });
 
 function LandingJumbo(props) {
-
+  let storedDataChart = JSON.parse(localStorage.getItem("chartData"))
   //getting the chart from local storage
-let storedDataChart = JSON.parse(localStorage.getItem("chartData"));
+// if (props.chart === 'undefined'){
+//   storedDataChart = JSON.parse(localStorage.getItem("chartData"))
+// }
+// else{
+//   storedDataChart = props.chart.prices;
+//}
 
-//formating the data for the chart
+// formating the data for the chart
 for (let i=0; i< storedDataChart.data.prices.length; i++){
   let date = new Date(storedDataChart.data.prices[i][0])
   let day = date.getDate()

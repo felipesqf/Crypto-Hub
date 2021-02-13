@@ -62,11 +62,11 @@ class Main extends Component {
         .then(res => {
         localStorage.setItem("coinList", JSON.stringify(res.data))
         this.setState({ results: res.data })
-        this.setState({ dataCard: storedCard })
+        this.setState({ dataCard: res.data[0]  })
         })
         .catch(err => console.log(err));
         
-        //get the chart data
+        // get the chart data
         CoinGeckoClient.coins.fetchMarketChart(storedCard.id, {
           days: 7,
           interval: "daily"

@@ -27,6 +27,7 @@ class News extends Component {
       }
       
 render(){
+  localStorage.setItem("News", JSON.stringify(this.state.docs))
   //get news stored
  let storedNews = JSON.parse(localStorage.getItem("News"));
     return(

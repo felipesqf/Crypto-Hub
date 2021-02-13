@@ -61,11 +61,11 @@ function Navbar() {
                     Home
                 </Link>
             </li>
-            <li>
+            {/* <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/learn">
                     Learn
                 </Link>
-            </li>
+            </li> */}
             <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/news">
                     News

@@ -131,8 +131,8 @@ router.post("/api/login", (req, res) => {
 });
 
 router.get("/api/profile", (req, res) => {
-  console.log(req.body);
-  User.findOne({
+  console.log(req);
+  User.findById({
     email: req.email,
   })
     .then((response) => {
