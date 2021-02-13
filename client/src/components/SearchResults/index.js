@@ -79,9 +79,9 @@ function SearchResults(props) {
       render: detail => <Button onClick={() => handleClick(detail)} type="button">View Details</Button>,
     },
   ];
-  // function onChange(pagination, filters, sorter, extra) {
-  //   console.log('params', pagination, filters, sorter, extra);
-  // }
+  function onChange(pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra);
+  }
 
   const data = props.results.map(result => ({
         no : result.market_cap_rank,

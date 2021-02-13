@@ -13,11 +13,11 @@ const User = require("../../models/User");
 router.use(cors());
 
 router.put("/api/addFav", (req, res) => {
-  console.log(req.body);
+  //   console.log(req.body);
   User.findOne({
     email: req.body.email,
   }).then((response) => {
-    console.log(response);
+    // console.log(response);
     const userData = {
       coin: req.body.coin,
     };
@@ -32,11 +32,11 @@ router.put("/api/addFav", (req, res) => {
 });
 
 router.put("/api/addPort", (req, res) => {
-  console.log(req.body);
+  //   console.log(req.body);
   User.findOne({
     email: req.body.email,
   }).then((response) => {
-    console.log(response);
+    // console.log(response);
     const userData = {
       coin: req.body.coin,
       amount: req.body.amount,
@@ -131,10 +131,7 @@ router.post("/api/login", (req, res) => {
 });
 
 router.get("/api/profile", (req, res) => {
-  //   var decoded = jwt.verify(
-  //     req.headers["authorization"],
-  //     process.env.SECRET_KEY
-  //   );
+  console.log(req.body);
   User.findOne({
     email: req.email,
   })

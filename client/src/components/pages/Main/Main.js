@@ -26,12 +26,23 @@ class Main extends Component {
 
   handleChange(value){
       this.setState({ dataCard: value });
+      localStorage.setItem("cardData", JSON.stringify(value))
+
+      let storedCard = JSON.parse(localStorage.getItem("cardData"));  
+      CoinGeckoClient.coins.fetchMarketChart(storedCard.id, {
+        days: 7,
+        interval: "daily"
+      }).then(res => {
+        localStorage.setItem("chartData", JSON.stringify(res))
+        let { data } = res
+        this.setState({ chart: data, loading: false })})
   }
   handleInputChange = event => {
     const value = event.target.value;
     let storedCoins = JSON.parse(localStorage.getItem("coinList"));
     let filteredCoin = storedCoins.filter(letter => letter.id.includes(value))
     this.setState({ results: filteredCoin });
+    
   };
     handleSizeChange = (e) => {
       this.setState({ size: e.target.value });
@@ -42,33 +53,31 @@ class Main extends Component {
         loading: true
       });
         // this.getCoins();
-              
+        let storedCard = JSON.parse(localStorage.getItem("cardData"));     
         API.getCoins()
         .then(res => {
         localStorage.setItem("coinList", JSON.stringify(res.data))
         this.setState({ results: res.data })
-        this.setState({ dataCard: res.data[0] })
+        this.setState({ dataCard: storedCard })
         })
         .catch(err => console.log(err));
-
-
-        CoinGeckoClient.coins.fetchMarketChart('bitcoin', {
+        
+  
+        CoinGeckoClient.coins.fetchMarketChart(storedCard.id, {
           days: 7,
           interval: "daily"
         }).then(res => {
+          localStorage.setItem("chartData", JSON.stringify(res))
           let { data } = res
           this.setState({ chart: data, loading: false })})
     }
   
-   //https://medium.com/the-capital/crypto-trading-strategies-you-need-to-know-for-2020-11914e7b3815
-  //Render on the screen
-
     render() {
       return(
         
             <Layout className="layout">
                 <div className="d-flex justify-content-center backgroundImg">
-                  <LandingJumbo results={this.state.dataCard} chart={this.state.chart.data}/>
+                  <LandingJumbo results={this.state.dataCard} chart={this.state.chart}/>
                 </div>
                 <Content style={{ padding: '0 50px' }}>
                   <div className="justify-content-center">

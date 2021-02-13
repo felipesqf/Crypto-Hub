@@ -13,7 +13,7 @@ function DashboardNewsCard(props) {
     const [state, appDispatch] = useAppContext();
     useLoginCheck(appDispatch);
 
-    console.log(props.state.user)
+    // console.log(props.state.user)
     let formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -22,20 +22,14 @@ function DashboardNewsCard(props) {
     let getRandomColor = () =>{
          let randomColor = Math.floor(Math.random()*16777215).toString(16)
          randomColor = '#'+randomColor
-         console.log(randomColor)
          return randomColor
-    }
-    function handleChange(event) {
-        this.setState({ results: event });
-      };
-
-      
+    }      
     // let amountUSD
-    console.log(props.state.user)
     // let calculatePort = portfolio.foreach(res =>( res.name === storedCoins.current_price
     // ))
 
     const percentage = props.state.user.portfolio.map(item => ({
+            amount: item.amount,
             title: item.coin,
             value: (((item.currentPrice * item.amount) /props.state.user.total) * 100 ).toFixed(2),
             color: getRandomColor().toUpperCase(),
@@ -45,7 +39,6 @@ function DashboardNewsCard(props) {
             element.value = parseFloat(element.value)
             
         });
-        console.log(percentage)
     return (
         <div height="400px"className="mx-auto col-sm-8 cardBackground">
             <div className="card-body">
@@ -62,7 +55,7 @@ function DashboardNewsCard(props) {
             <ul>
                 {percentage.map(item => 
                 <li>
-                    <p><Badge color={item.color}/> { item.title }: % { item.value }~</p>
+                    <p><Badge color={item.color}/> {item.amount} { item.title }: % { item.value }~</p>
                 </li>
                 )}
                 </ul>

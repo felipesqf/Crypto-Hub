@@ -3,7 +3,7 @@ import CoinList from '../../DashboardNewsCard/CoinList';
 import DashboardNewsCard from '../../DashboardNewsCard/DashboardNewsCard';
 import { useAppContext } from '../../../store';
 import { useLoginCheck } from '../../../utils/setAuthToken';
-
+import { getUser } from '../../../utils/userFunctions';
 // This function detects most providers injected at window.ethereum
 // import detectEthereumProvider from '@metamask/detect-provider';
 // let Web3 = require("web3");
@@ -37,9 +37,14 @@ function Portfolio() {
     useLoginCheck(appDispatch);
 
     function handleChange(event) {
-        this.setState({ state: event });
+        console.log(state.user.email)
+        getUser(state.user.email).then(res => {
+            console.log(res)
+            this.appDispatch({ state : res })
+            
+        })
       };
-      
+
     return (
         <div className="pl-0 container-fluid">
             {/* <Sidebar /> */}
@@ -48,11 +53,10 @@ function Portfolio() {
                 <h1>
                     My Portfolio
                 </h1>
-                
                 <div className="flex-row-reverse mr-5 d-flex">
                     <DashboardNewsCard state={state}/>
                 </div>
-                <CoinList onChange={useLoginCheck(appDispatch)} handleChange={handleChange.bind(this)} results={storedCoins}/>
+                <CoinList  onChange={useLoginCheck(appDispatch)} handleChange={handleChange.bind(this)} results={storedCoins}/>
             </div>
         </div>
     );

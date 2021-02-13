@@ -23,11 +23,13 @@ export const getUsers = () => {
 };
 
 export const getUser = (p) => {
-    return axios.get('/api/profile', p).then((res) => res.data)
+    console.log(p)
+    return axios.get('/api/profile', { p })
+    .then((res) => console.log(res))
 };
 
 export const addFav = (userData) => {
-    console.log(userData)
+    // console.log(userData)
     return axios.put('/api/addFav',{
         coin: userData.coin[0].name,
         email: userData.email,
@@ -35,7 +37,7 @@ export const addFav = (userData) => {
    ).then((res) => res.data);
 };
 export const addPort = (userData) => {
-    console.log(userData)
+    // console.log(userData)
     return axios.put('/api/addPort',{
         coin: userData.coin,
         amount: userData.amount,

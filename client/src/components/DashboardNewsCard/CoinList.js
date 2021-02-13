@@ -3,13 +3,16 @@ import "./style.css";
 import { Table, Button, Modal, Input } from 'antd';
 import { addFav, addPort } from '../../utils/userFunctions';
 import { useAppContext } from '../../store';
-import { useLoginCheck } from '../../utils/setAuthToken';
-import DashboardNewsCard from './DashboardNewsCard'
+import { useLoginCheck,  } from '../../utils/setAuthToken';
+
+
 
 function CoinList(props) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [coin, setCoin] = useState();
   const [state, appDispatch] = useAppContext();
+  
+
   
   useLoginCheck(appDispatch);
 
@@ -33,10 +36,12 @@ function CoinList(props) {
     }
     let total = state.user.total + (coinAmount * coin.current_price)
     state.user.total = total
-    await props.handleChange(state.user)
     addPort(userData)
     setIsModalVisible(false);
-    console.log(state.user)
+    // console.log(state.user)
+
+            // Set token to Auth header
+
   };
 
   const handleCancel = () => {
@@ -57,7 +62,8 @@ function CoinList(props) {
     }
       await state.user.favorite.push(e)
       addFav(userData);
-      console.log(state.user)
+      // console.log(state.user)
+      props.handleChange()
       // getUser(state.user.email)
   }
   const columns = [

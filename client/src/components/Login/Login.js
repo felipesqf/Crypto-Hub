@@ -34,6 +34,7 @@ function Login() {
             // Set token to localStorage
             const token = response.data;
             // Set token to Auth header
+            console.log(token)
             setAuthToken(token);
             // Decode token to get user data
             const decodedToken = jwt_decode(token);
