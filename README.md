@@ -22,9 +22,9 @@ The project is composed of all MERN components plus readme, package.json, public
 
 #### Final Product
 
-![screenshot1](https://github.com/felipesqf/EmployeeDirectory/blob/master/public/assets/empdir1.png)
-![screenshot2](https://github.com/felipesqf/EmployeeDirectory/blob/master/public/assets/empdir2.png)
-![screenshot3](https://github.com/felipesqf/EmployeeDirectory/blob/master/public/assets/empdir3.png)
+![screenshot1](https://github.com/felipesqf/Crypto-Hub/blob/main/client/public/images/1.png)
+![screenshot2](https://github.com/felipesqf/Crypto-Hub/blob/main/client/public/images/3.png)
+![screenshot3](https://github.com/felipesqf/Crypto-Hub/blob/main/client/public/images/2.png)
 
 
 ### Licence
