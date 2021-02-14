@@ -14,42 +14,64 @@ router.use(cors());
 
 router.put("/api/addFav", (req, res) => {
   //   console.log(req.body);
-  User.findOne({
-    email: req.body.email,
-  }).then((response) => {
-    // console.log(response);
-    const userData = {
-      coin: req.body.coin,
-    };
-    User.updateOne({ $push: { favorite: userData } })
-      .then((user) => {
-        res.json(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  const userData = {
+    coin: req.body.coin,
+  };
+
+  User.findOneAndUpdate(
+    {
+      email: req.body.email,
+    },
+    { $push: { favorite: userData } }
+  )
+    .then((user) => {
+      console.log(user);
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 router.put("/api/addPort", (req, res) => {
   //   console.log(req.body);
-  User.findOne({
-    email: req.body.email,
-  }).then((response) => {
-    // console.log(response);
-    const userData = {
-      coin: req.body.coin,
-      amount: req.body.amount,
-      currentPrice: req.body.currentPrice,
-    };
-    User.updateOne({ $push: { portfolio: userData }, total: req.body.total })
-      .then((user) => {
-        return res.json(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  const userData = {
+    coin: req.body.coin,
+    amount: req.body.amount,
+    currentPrice: req.body.currentPrice,
+  };
+
+  User.findOneAndUpdate(
+    {
+      email: req.body.email,
+    },
+    { $push: { portfolio: userData }, total: req.body.total }
+  )
+    .then((user) => {
+      console.log(user);
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  // User.findOne({
+  //   email: req.body.email,
+  // }).then((response) => {
+  //   // console.log(response);
+  //   const userData = {
+  //     coin: req.body.coin,
+  //     amount: req.body.amount,
+  //     currentPrice: req.body.currentPrice,
+  //   };
+  //   User.updateOne({ $push: { portfolio: userData }, total: req.body.total })
+  //     .then((user) => {
+  //       return res.json(user);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
 });
 router.post("/api/register", (req, res) => {
   // Form validation
