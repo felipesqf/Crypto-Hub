@@ -7,56 +7,130 @@ var formatter = new Intl.NumberFormat('en-US', {
   });
 
 function LandingJumbo(props) {
-  let storedDataChart = JSON.parse(localStorage.getItem("chartData"))
+  let storedDataChart;
+  let config;
+  let data
+  
   //getting the chart from local storage
-// if (props.chart === 'undefined'){
-//   storedDataChart = JSON.parse(localStorage.getItem("chartData"))
-// }
-// else{
-//   storedDataChart = props.chart.prices;
-//}
-
-// formating the data for the chart
-for (let i=0; i< storedDataChart.data.prices.length; i++){
-  let date = new Date(storedDataChart.data.prices[i][0])
-  let day = date.getDate()
-  let month = date.getMonth()
-  storedDataChart.data.prices[i][0] = day+"/"+month
+if (props.chart == null || props.chart === undefined || props.chart.length == 0 ){
+  storedDataChart = JSON.parse(localStorage.getItem("chartData"))
+  console.log(storedDataChart)
+  if (storedDataChart === 0 || storedDataChart == null){
+    data = [
+      { date: '2020', value: '0.00' },
+      {color:'black'}
+    ]
+    config = {
+      data,
+      color:'black',
+      xField: 'date',
+      yField: 'value',
+      point: {
+        shape: 'diamond',
+        color:'black',
+        style: {
+          fill: '#fff',
+          
+        },
+      },
+      label: {
+        color:'black',
+        style: {
+          fill: '#fff',
+          
+        },
+      },
+    };
+      }
+      else{
+        for (let i=0; i< storedDataChart.data.prices.length; i++){
+          let date = new Date(storedDataChart.data.prices[i][0])
+          let day = date.getDate()
+          let month = date.getMonth()
+          storedDataChart.data.prices[i][0] = day+"/"+month
+        }
+        //data for the chart
+              data = [
+                { date: storedDataChart.data.prices[1][0], value: storedDataChart.data.prices[1][1] },
+                { date: storedDataChart.data.prices[1][0], value: storedDataChart.data.prices[1][1] },
+                { date: storedDataChart.data.prices[2][0], value: storedDataChart.data.prices[2][1] },
+                { date: storedDataChart.data.prices[3][0], value: storedDataChart.data.prices[3][1] },
+                { date: storedDataChart.data.prices[4][0], value: storedDataChart.data.prices[4][1] },
+                { date: storedDataChart.data.prices[5][0], value: storedDataChart.data.prices[5][1] },
+                { date: storedDataChart.data.prices[6][0], value: storedDataChart.data.prices[6][1] },
+                // { date: storedDataChart.data.prices[7][0], value: storedDataChart.data.prices[7][1] },
+                {color:'black'}
+              ]
+              config = {
+                data,
+                color:'black',
+                xField: 'date',
+                yField: 'value',
+                point: {
+                  shape: 'diamond',
+                  color:'black',
+                  style: {
+                    fill: '#fff',
+                    
+                  },
+                },
+                label: {
+                  color:'black',
+                  style: {
+                    fill: '#fff',
+                    
+                  },
+                },
+              };
+      }
+      //data for the chart
+}
+else{
+  storedDataChart = props;
+  console.log(storedDataChart)
+  for (let i=0; i< storedDataChart.length; i++){
+    let date = new Date(storedDataChart[i][0])
+    let day = date.getDate()
+    let month = date.getMonth()
+    storedDataChart[i][0] = day+"/"+month
+  }
+  //data for the chart
+        data = [
+          { date: storedDataChart.prices[0][0], value: storedDataChart.prices[0][1] },
+          { date: storedDataChart[1][0], value: storedDataChart[1][1] },
+          { date: storedDataChart[2][0], value: storedDataChart[2][1] },
+          { date: storedDataChart[3][0], value: storedDataChart[3][1] },
+          { date: storedDataChart[4][0], value: storedDataChart[4][1] },
+          { date: storedDataChart[5][0], value: storedDataChart[5][1] },
+          { date: storedDataChart[6][0], value: storedDataChart[6][1] },
+          { date: storedDataChart[7][0], value: storedDataChart[7][1] },
+          {color:'black'}
+        ]
+        config = {
+          data,
+          color:'black',
+          xField: 'date',
+          yField: 'value',
+          point: {
+            shape: 'diamond',
+            color:'black',
+            style: {
+              fill: '#fff',
+              
+            },
+          },
+          label: {
+            color:'black',
+            style: {
+              fill: '#fff',
+              
+            },
+          },
+        };
 }
 
-//data for the chart
-      const data = [
-        { date: storedDataChart.data.prices[0][0], value: storedDataChart.data.prices[0][1] },
-        { date: storedDataChart.data.prices[1][0], value: storedDataChart.data.prices[1][1] },
-        { date: storedDataChart.data.prices[2][0], value: storedDataChart.data.prices[2][1] },
-        { date: storedDataChart.data.prices[3][0], value: storedDataChart.data.prices[3][1] },
-        { date: storedDataChart.data.prices[4][0], value: storedDataChart.data.prices[4][1] },
-        { date: storedDataChart.data.prices[5][0], value: storedDataChart.data.prices[5][1] },
-        { date: storedDataChart.data.prices[6][0], value: storedDataChart.data.prices[6][1] },
-        { date: storedDataChart.data.prices[7][0], value: storedDataChart.data.prices[7][1] },
-        {color:'black'}
-      ]
-      const config = {
-        data,
-        color:'black',
-        xField: 'date',
-        yField: 'value',
-        point: {
-          shape: 'diamond',
-          color:'black',
-          style: {
-            fill: '#fff',
-            
-          },
-        },
-        label: {
-          color:'black',
-          style: {
-            fill: '#fff',
-            
-          },
-        },
-      };
+// formating the data for the chart
+
     return (
         <div className="mt-5 jumbotron landingJumbo">
             <div  className="mx-left col-sm-4 jumboText">
